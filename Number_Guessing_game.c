@@ -1,51 +1,33 @@
-[Project]
-filename=Number_Guessing_game.c
-name=Project1
-Type=1
-Ver=2
-ObjFiles=
-Includes=
-Libs=
-PrivateResource=
-ResourceIncludes=
-MakeIncludes=
-Compiler=
-CppCompiler=
-Linker=
-IsCpp=0
-Icon=
-ExeOutput=
-ObjectOutput=
-LogOutput=
-LogOutputEnabled=0
-OverrideOutput=0
-OverrideOutputName=
-HostApplication=
-UseCustomMakefile=0
-CustomMakefile=
-CommandLine=
-Folders=
-IncludeVersionInfo=0
-SupportXPThemes=0
-CompilerSet=0
-CompilerSettings=0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;0;4;0;0;0
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
 
-[VersionInfo]
-Major=1
-Minor=0
-Release=0
-Build=0
-LanguageID=1033
-CharsetID=1252
-CompanyName=
-FileVersion=
-FileDescription=Developed using the Dev-C++ IDE
-InternalName=
-LegalCopyright=
-LegalTrademarks=
-OriginalFilename=
-ProductName=
-ProductVersion=
-AutoIncBuildNr=0
-SyncProduct=1
+void playGame() {
+int secret, guess, attempts = 0;
+secret = rand() % 100 + 1;
 
+printf("Guess the number (1-100)!\n");
+
+do {
+printf("Enter your guess: ");
+scanf("%d", &guess);
+attempts++;
+
+if (guess > secret) printf("Too high!\n");
+else if (guess < secret) printf("Too low!\n");
+else printf("Correct! You took %d attempts.\n", attempts);
+} while (guess != secret);
+}
+
+int main() {
+srand(time(NULL));
+char playAgain;
+
+do {
+playGame();
+printf("Play again? (y/n): ");
+scanf(" %c", &playAgain);
+} while (playAgain == 'y' || playAgain == 'Y');
+
+return 0;
+}
